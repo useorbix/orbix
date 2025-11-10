@@ -1,12 +1,28 @@
+import subprocess
+import sys
+
+def install_package(package):
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    except subprocess.CalledProcessError:
+        print(f"Failed to install {package}. Please install it manually.")
+        sys.exit(1)
+
+try:
+    from git import Repo, InvalidGitRepositoryError
+except ModuleNotFoundError:
+    print("GitPython not found. Installing it now...")
+    install_package("GitPython")
+    from git import Repo, InvalidGitRepositoryError
+
 import os
-from git import Repo, InvalidGitRepositoryError
 
 def load_repo(path='.'):
     try:
         return Repo(path)
     except InvalidGitRepositoryError:
         print("Not a git repo. Please run inside a git repository folder.")
-        exit(1)
+        sys.exit(1)
 
 def show_current_branch(repo):
     print(f'Current branch: {repo.active_branch.name}')
