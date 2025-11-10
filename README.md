@@ -15,8 +15,17 @@ The software is made of a variety languages for the user to pick from. Each lang
 Folow the steps to use Orbix:
 
 1. Clone the repo:
-   
-2. 
+   ```bash
+   git clone https://github.com/UseOrbix/orbix.git
+   ```
+
+
+2. `cd` into the git repo:
+   ```bash
+   cd orbix
+   ```
+
+3. 
 
 ## License
 
